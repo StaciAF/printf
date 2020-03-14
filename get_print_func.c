@@ -1,10 +1,16 @@
 #include "holberton.h"
+/**
+ * get_print_func - chooses correct function
+ * @x: char passed
+ *
+ * Return: pointer to function
+ */
 
-void get_print_func(char x)
+int (*get_print_func(char x))(const unsigned int, ...)
 {
 	if (x == 'c')
-		print_char(x);
+		return (print_char);
 
 	if (x == 's')
-		print_string(x);
+		return (print_string);
 }
