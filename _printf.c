@@ -12,7 +12,7 @@ int _printf(const char *format, ...)
 	int i, len = 0;
 	unsigned int count = 0;
 	va_list args;
-	int (*func(const unsigned int, ...));
+	int (*func)(const unsigned int, ...);
 
 	va_start(args, format);
 
@@ -29,7 +29,7 @@ int _printf(const char *format, ...)
 			switch (format[i])
 			{
 				case 'c':
-					count += func(1, va_arg(args, char));
+					count += func(1, va_arg(args, int));
 					break;
 				case 's':
 					count += func(1, va_arg(args, char *));
