@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
+int print_string(const unsigned int,...);
 int print_char(const unsigned int n, ...);
-void print_string(char *s);
 
 #endif

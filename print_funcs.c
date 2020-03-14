@@ -30,20 +30,36 @@ int print_char(const unsigned int n, ...)
 
 /**
  * print_string - prints given string
- * @s: string passed to be printed
+ * @n: first argument passed
  *
- * Return: Nothing
+ * Return: character count
  */
-void print_string(char *s)
+int print_string(const unsigned int n, ...)
 {
-        /* set integer to count size of string */
-	int count;
+	va_list args;
 
-        /* iterate through string to find length */
+	/* set integer to count size of string */
+	int count;
+	char *s;
+
+	va_start(args, n);
+
+	/* set s to arg list reading char pointer */
+	s = va_arg(args, char *);
+
+	/* finds length of string */
 	count = 0;
 	while (s[count] != '\0')
+	{
 		count++;
+	}
 
-        /* prints string to stdout (1) */
+	/* prints string to stdout (1) */
 	write(1, s, count);
+
+
+	va_end(args);
+
+	/* returns number of characters printed */
+	return (count);
 }
