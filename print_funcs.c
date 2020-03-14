@@ -3,11 +3,11 @@
 #include <stdarg.h>
 /**
  * print_string - prints given string
- * @int: string passed to be printed
+ * @n: first argument passed
  *
  * Return: Nothing
  */
-int print_string(const unsigned int n,...)
+int print_string(const unsigned int n, ...)
 {
 /* set variadic functions */
 	va_list args;
@@ -17,10 +17,10 @@ int print_string(const unsigned int n,...)
 	char *s;
 
 /* initialize args list */
-	va_start (args, n);
+	va_start(args, n);
 
 /* set s to arg list reading char pointer */
-	s = va_arg (args, char *);
+	s = va_arg(args, char *);
 
 /* iterate through string to find length */
 	count = 0;
@@ -33,7 +33,7 @@ int print_string(const unsigned int n,...)
 	write(1, s, count);
 
 /* end argument list */
-	va_end (args);
+	va_end(args);
 
 /* returns number of characters printed */
 	return (count);
