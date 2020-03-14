@@ -3,8 +3,9 @@
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdarg.h>
 
-void print_char(char c);
+int print_char(const unsigned int n, ...);
 void print_string(char *s);
 
 #endif

@@ -2,21 +2,30 @@
 
 /**
  * print_char - prints a character to stdout
- * @c: character to print
+ * @n: num of args
+ * @...: list of args
+ *
+ * Return: number of characters printed (always 1)
  */
-void print_char(char c)
+int print_char(const unsigned int n, ...)
 {
-	/* Allocates a string large enough for one character */
-	char *s = malloc(sizeof(char) * 1);
+	char *s;
+	va_list args;
 
-	/* Stores character in the string */
-	s[0] = c;
+	va_start(args, n);
 
-	/* Prints string to stdout */
+	/* Converts character to a string */
+	s = malloc(sizeof(char) * 1);
+	s[0] = va_arg(args, int);
+
+	/* Prints string to stdout then discards it */
 	write(1, s, 1);
-
-	/* Unallocates the string */
 	free(s);
+
+	va_end(args);
+
+	/* Printed one character, so return 1 */
+	return (1);
 }
 
 /**
