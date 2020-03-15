@@ -96,6 +96,7 @@ int print_int(const unsigned int n, ...)
 	{
 		s[i] = (num / div) + '0';
 		num = num % div;
+		div = div / 10;
 	}
 
 	write(1, s, count);
