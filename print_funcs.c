@@ -63,3 +63,42 @@ int print_string(const unsigned int n, ...)
 	/* returns number of characters printed */
 	return (count);
 }
+
+/**
+ * print_int - prints an integer
+ * @n: number of args
+ *
+ * Return: num of characters printed
+ */
+int print_int(const unsigned int n, ...)
+{
+	int i, num, count = 0, div = 1;
+	char *s;
+	va_list args;
+
+	va_start(args, n);
+
+	/* store integer to print */
+	num = va_arg(args, int);
+
+	/* count number of digits */
+	while (num / div != 0)
+	{
+		count++;
+		div = div * 10;
+	}
+
+	s = malloc(sizeof(char) * count);
+	div = div / 10;
+
+	/* converts int into string */
+	for (i = 0; i < count; i++)
+	{
+		s[i] = (num / div) + '0';
+		num = num % div;
+	}
+
+	write(1, s, count);
+
+	return (count);
+}
