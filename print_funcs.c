@@ -101,5 +101,8 @@ int print_int(const unsigned int n, ...)
 
 	write(1, s, count);
 
+	va_end(args);
+	free(s);
+
 	return (count);
 }
