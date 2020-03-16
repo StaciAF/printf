@@ -30,7 +30,7 @@ Print ARGUMENT(s) according to FORMAT
 .SH OPTIONS
 None.
 .SH SEE ALSO
-.I _printf(1) _printf(2)
+.I man_3_printf
 .SH BUGS
 No known bugs.
 .SH AUTHOR

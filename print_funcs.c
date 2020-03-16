@@ -70,18 +70,31 @@ int print_string(const unsigned int n, ...)
 	return (count);
 }
 
+/**
+ * print_percent - prints a percent sign to stdout
+ * @n: num of args
+ * @...: list of args
+ *
+ * Return: number of characters printed (always 1)
+ */
+
 int print_percent(const unsigned int n, ...)
 {
 	char *p;
 	va_list args;
 
 	va_start(args, n);
+
+/* set p to arg list reading type char */
 	p = va_args(args, char);
 
 	while (p)
 	{
+/* prints p to stdout */
 		write(1, p, 1);
 	}
 	va_end(args);
+
+/* returns number of characters printed */
 	return (1);
 }
