@@ -1,0 +1,37 @@
+.TH _printf (3) "15 March 2020" "version 1.0" "_printf man page"
+.SH NAME
+.B _printf
+print formatted output
+.SH SYNOPSIS
+#include "holberton.h"
+.br
+.SB int _printf(const unsigned int n, ...);
+.SH DESCRIPTION
+Print ARGUMENT(s) according to FORMAT
+
+.br
+.B Conversion specifiers
+
+.br
+.B c
+- int argument is converted to char, the resulting char is written
+
+.br
+.B s
+- argument is pointer to an array of character types, characters are written
+
+.br
+.B %
+- the complete conversion specification is '%%', a '%' is written
+
+.br
+.B d, i
+- int argument is converted to signed decimal notation, decimal is written
+.SH OPTIONS
+None.
+.SH SEE ALSO
+.I _printf(1) _printf(2)
+.SH BUGS
+No known bugs.
+.SH AUTHOR
+Written by Sean Taylor and Staci Aaenson-Fletcher for Holberton Tulsa Cohort 11
