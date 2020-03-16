@@ -13,4 +13,7 @@ int (*get_print_func(char x))(const unsigned int, ...)
 
 	if (x == 's')
 		return (print_string);
+
+	if (x == 'b')
+		return (print_bin);
 }
