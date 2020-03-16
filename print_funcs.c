@@ -1,22 +1,33 @@
 #include "holberton.h"
+
 /**
  * print_char - prints a character to stdout
- * @c: character to print
+ * @n: num of args
+ * @...: list of args
+ *
+ * Return: number of characters printed (always 1)
  */
 
-void print_char(char c)
+int print_char(const unsigned int n, ...)
+
 {
-	/* Allocates a string large enough for one character */
-	char *s = malloc(sizeof(char) * 1);
+	char *s;
+	va_list args;
 
-	/* Stores character in the string */
-	s[0] = c;
+	va_start(args, n);
 
-	/* Prints string to stdout */
+	/* Converts character to a string */
+	s = malloc(sizeof(char) * 1);
+	s[0] = va_arg(args, int);
+
+	/* Prints string to stdout then discards it */
 	write(1, s, 1);
-
-	/* Unallocates the string */
 	free(s);
+
+	va_end(args);
+
+	/* Printed one character, so return 1 */
+	return (1);
 }
 
 /**
@@ -28,37 +39,34 @@ void print_char(char c)
 
 int print_string(const unsigned int n, ...)
 {
-
 	va_list args;
 
 
         /* set integer to count size of string */
+	va_list args;
 
+	/* set integer to count size of string */
 	int count;
 	char *s;
 
-
 	va_start(args, n);
 
-
-/* set s to arg list reading char pointer */
+	/* set s to arg list reading char pointer */
 	s = va_arg(args, char *);
 
-
-        /* iterate through string to find length */
+	/* finds length of string */
 	count = 0;
 	while (s[count] != '\0')
 	{
 		count++;
 	}
 
-        /* prints string to stdout (1) */
+	/* prints string to stdout (1) */
 	write(1, s, count);
-
 
 	va_end(args);
 
-/* returns number of characters printed */
+	/* returns number of characters printed */
 	return (count);
 }
 
