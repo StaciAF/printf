@@ -11,5 +11,7 @@ int print_string(const unsigned int,...);
 int print_char(const unsigned int n, ...);
 int print_int(const unsigned int n, ...);
 int print_bin(const unsigned int n, ...);
+int print_percent(const unsigned int n, ...)
+
 
 #endif

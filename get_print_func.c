@@ -16,4 +16,10 @@ int (*get_print_func(char x))(const unsigned int, ...)
 
 	if (x == 'b')
 		return (print_bin);
+
+	if (x == '%')
+		return(print_percent);
+
+	if (x == 'd' || x == 'i')
+		return(print_int);
 }
