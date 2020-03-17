@@ -1,5 +1,5 @@
 #include "holberton.h"
-
+#include <stdio.h>
 /**
  * print_char - prints a character to stdout
  * @n: num of args
@@ -53,12 +53,19 @@ int print_string(const unsigned int n, ...)
 	/* set s to arg list reading char pointer */
 	s = va_arg(args, char *);
 
+	if (s == '\0')
+		return (-1);
+
 	/* finds length of string */
 	count = 0;
-	while (s[count] != '\0')
-	{
-		count++;
-	}
+		while (s[count] != '\0')
+		{
+			if (s[count] == 0)
+			{
+				return (-1);
+			}
+			count++;
+		}
 
 	/* prints string to stdout (1) */
 	write(1, s, count);
