@@ -7,7 +7,7 @@
 
 int _printf(const char *format, ...);
 int (*get_print_func(char x))(const unsigned int, ...);
-int print_string(const unsigned int,...);
+int print_string(const unsigned int n, ...);
 int print_char(const unsigned int n, ...);
 int print_int(const unsigned int n, ...);
 int print_bin(const unsigned int n, ...);
