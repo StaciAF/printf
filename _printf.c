@@ -15,45 +15,24 @@ int _printf(const char *format, ...)
 	int (*func)(const unsigned int, ...);
 
 	va_start(args, format);
-
 	while (format[len] != '\0')
 		len++;
-
 	for (i = 0; i < len; i++)
 	{
 		if (format[i] == '%' && format[i + 1] != '\0')
 		{
 			i++;
 			func = get_print_func(format[i]);
-
-			switch (format[i])
-			{
-				case 'c':
-					count += func(1, va_arg(args, int));
-					break;
-				case 's':
-					count += func(1, va_arg(args, char *));
-					break;
-				case 'b':
-					count += func(1, va_arg(args, unsigned int));
-					break;
-			        case '%':
-				        count += func(1, va_arg(args, char));
-				        break;
-			        case 'd':
-				        count += func(1, va_arg(args, int));
-				        break;
-			        case 'i':
-				        count += func(1, va_arg(args, int));
-				        break;
-			        case 'b':
-				        count += func(1, va_arg(args, unsigned int));
-				        break;
-
-
-				default:
-					break;
-			}
+			if (format[i] == 'c')
+				count += func(1, va_arg(args, int));
+			else if (format[i] == 's')
+				count += func(1, va_arg(args, char *));
+			else if (format[i] == '%')
+				count += func(1);
+			else if (format[i] == 'd' || format[i] == 'i')
+				count += func(1, va_arg(args, int));
+			else if (format[i] == 'b')
+				count += func(1, va_arg(args, unsigned int));
 		}
 		else
 		{
@@ -61,8 +40,6 @@ int _printf(const char *format, ...)
 			count += func(1, format[i]);
 		}
 	}
-
 	va_end(args);
-
 	return (count);
 }
