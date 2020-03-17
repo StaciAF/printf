@@ -34,18 +34,18 @@ int _printf(const char *format, ...)
 				case 's':
 					count += func(1, va_arg(args, char *));
 					break;
-			        case '%':
-				        count += func(1, va_arg(args, char));
-				        break;
-			        case 'd':
-				        count += func(1, va_arg(args, int));
-				        break;
-			        case 'i':
-				        count += func(1, va_arg(args, int));
-				        break;
-			        case 'b':
-				        count += func(1, va_arg(args, unsigned int));
-				        break;
+			case '%':
+				count += func(1, va_arg(args, int));
+				break;
+			case 'd':
+				count += func(1, va_arg(args, int));
+				break;
+			case 'i':
+				count += func(1, va_arg(args, int));
+				break;
+			case 'b':
+				count += func(1, va_arg(args, unsigned int));
+				break;
 
 				default:
 					break;

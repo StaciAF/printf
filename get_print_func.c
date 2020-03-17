@@ -15,8 +15,10 @@ int (*get_print_func(char x))(const unsigned int, ...)
 		return (print_string);
 
 	if (x == '%')
-		return(print_percent);
+		return (print_percent);
 
 	if (x == 'd' || x == 'i')
-		return(print_int);
+		return (print_int);
+	else
+		return (0);
 }
