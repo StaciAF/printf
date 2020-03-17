@@ -9,7 +9,6 @@
  */
 
 int print_char(const unsigned int n, ...)
-
 {
 	char *s;
 	va_list args;
@@ -39,10 +38,6 @@ int print_char(const unsigned int n, ...)
 
 int print_string(const unsigned int n, ...)
 {
-	va_list args;
-
-
-        /* set integer to count size of string */
 	va_list args;
 
 	/* set integer to count size of string */
@@ -80,19 +75,17 @@ int print_string(const unsigned int n, ...)
 
 int print_percent(const unsigned int n, ...)
 {
-	char *p;
+	char *p = malloc(sizeof(char) * 1);
 	va_list args;
 
 	va_start(args, n);
 
 /* set p to arg list reading type char */
-	p = va_args(args, char);
+	p[0] = '%';
 
-	while (p)
-	{
 /* prints p to stdout */
-		write(1, p, 1);
-	}
+	write(1, p, 1);
+
 	va_end(args);
 
 /* returns number of characters printed */
