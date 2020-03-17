@@ -105,42 +105,46 @@ int print_percent(const unsigned int n, ...)
  */
 int print_int(const unsigned int n, ...)
 {
-	int i, num, count = 0, div = 1;
+	int i, num, neg = 0, count = 0, div = 1;
 	char *s;
 	va_list args;
 
 	va_start(args, n);
-
 	/* store integer to print */
 	num = va_arg(args, int);
-
 	/* count number of digits */
 	while (num / div != 0)
 	{
 		count++;
 		div = div * 10;
 	}
-
+	if (num < 0)
+	{
+		neg = 1;
+		num = -num;
+		count++;
+	}
 	s = malloc(sizeof(char) * count);
 
 	if (s == NULL)
 		return (-1);
 
 	div = div / 10;
-
 	/* converts int into string */
 	for (i = 0; i < count; i++)
 	{
+		if (neg && i == 0)
+		{
+			s[i] = '-';
+			continue;
+		}
 		s[i] = (num / div) + '0';
 		num = num % div;
 		div = div / 10;
 	}
-
 	write(1, s, count);
-
 	va_end(args);
 	free(s);
-
 	return (count);
 }
 
@@ -189,4 +193,27 @@ int print_bin(const unsigned int n, ...)
 	free(s);
 
 	return (count);
+}
+
+/**
+ * print_unknown - prints unkown specifiers as if they are normal characters
+ * @n: number of arguments
+ *
+ * Return: num of characters printed
+ */
+int print_unknown(const unsigned int n, ...)
+{
+	va_list args;
+	char *s = malloc(sizeof(char) * 2);
+
+	va_start(args, n);
+
+	s[0] = va_arg(args, int);
+	s[1] = va_arg(args, int);
+
+	write(1, s, 2);
+
+	va_end(args);
+
+	return (2);
 }

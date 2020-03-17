@@ -20,10 +20,12 @@ int _printf(const char *format, ...)
 		len++;
 	for (i = 0; i < len; i++)
 	{
-		if (format[i] == '%' && format[i + 1] != '\0')
+		if (format[i] == '%')
 		{
 			i++;
 			func = get_print_func(format[i]);
+			if (format[i] == '\0')
+				return (-1);
 			if (format[i] == 'c')
 				tmp = func(1, va_arg(args, int));
 			else if (format[i] == 's')
@@ -34,6 +36,8 @@ int _printf(const char *format, ...)
 				tmp = func(1, va_arg(args, int));
 			else if (format[i] == 'b')
 				tmp = func(1, va_arg(args, unsigned int));
+			else
+				tmp = func(2, format[i - 1], format[i]);
 			if (tmp == -1)
 				return (-1);
 			count += tmp;
