@@ -9,11 +9,12 @@
  */
 int _printf(const char *format, ...)
 {
-	int i, len = 0;
-	unsigned int count = 0;
+	int i, tmp, len = 0, count = 0;
 	va_list args;
 	int (*func)(const unsigned int, ...);
 
+	if (format == NULL)
+		return (-1);
 	va_start(args, format);
 	while (format[len] != '\0')
 		len++;
@@ -24,15 +25,18 @@ int _printf(const char *format, ...)
 			i++;
 			func = get_print_func(format[i]);
 			if (format[i] == 'c')
-				count += func(1, va_arg(args, int));
+				tmp = func(1, va_arg(args, int));
 			else if (format[i] == 's')
-				count += func(1, va_arg(args, char *));
+				tmp = func(1, va_arg(args, char *));
 			else if (format[i] == '%')
-				count += func(1);
+				tmp = func(1);
 			else if (format[i] == 'd' || format[i] == 'i')
-				count += func(1, va_arg(args, int));
+				tmp = func(1, va_arg(args, int));
 			else if (format[i] == 'b')
-				count += func(1, va_arg(args, unsigned int));
+				tmp = func(1, va_arg(args, unsigned int));
+			if (tmp == -1)
+				return (-1);
+			count += tmp;
 		}
 		else
 		{
