@@ -8,8 +8,7 @@
  * Return: number of characters printed
  */
 int _printf(const char *format, ...)
-{
-	int i, tmp, len = 0, count = 0;
+{       int i, tmp, len = 0, count = 0;
 	va_list args;
 	int (*func)(const unsigned int, ...);
 
@@ -21,8 +20,7 @@ int _printf(const char *format, ...)
 	for (i = 0; i < len; i++)
 	{
 		if (format[i] == '%')
-		{
-			i++;
+		{       i++;
 			func = get_print_func(format[i]);
 			if (format[i] == '\0')
 				return (-1);
