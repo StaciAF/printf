@@ -21,8 +21,7 @@ int _printf(const char *format, ...)
 	for (i = 0; i < len; i++)
 	{
 		if (format[i] == '%')
-		{
-			i++;
+		{	i++;
 			func = get_print_func(format[i]);
 			if (format[i] == '\0')
 				return (-1);
