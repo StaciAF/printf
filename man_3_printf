@@ -27,11 +27,15 @@ Print ARGUMENT(s) according to FORMAT
 .br
 .B d, i
 - int argument is converted to signed decimal notation, decimal is written
+
+.br
+.B b
+- unsigned int is converted to binary, binary is written
 .SH OPTIONS
 None.
 .SH SEE ALSO
 .I man_3_printf
 .SH BUGS
-No known bugs.
+No known bugs. Notify authors if found.
 .SH AUTHOR
 Written by Sean Taylor and Staci Aaenson-Fletcher for Holberton Tulsa Cohort 11

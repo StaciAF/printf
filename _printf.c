@@ -34,9 +34,6 @@ int _printf(const char *format, ...)
 				case 's':
 					count += func(1, va_arg(args, char *));
 					break;
-				case 'b':
-					count += func(1, va_arg(args, unsigned int));
-					break;
 			        case '%':
 				        count += func(1, va_arg(args, char));
 				        break;
@@ -49,8 +46,6 @@ int _printf(const char *format, ...)
 			        case 'b':
 				        count += func(1, va_arg(args, unsigned int));
 				        break;
-
-
 				default:
 					break;
 			}
