@@ -17,6 +17,10 @@ int print_char(const unsigned int n, ...)
 
 	/* Converts character to a string */
 	s = malloc(sizeof(char) * 1);
+
+	if (s == NULL)
+		return (-1);
+
 	s[0] = va_arg(args, int);
 
 	/* Prints string to stdout then discards it */
@@ -77,10 +81,10 @@ int print_percent(const unsigned int n, ...)
 {
 	char *p = malloc(sizeof(char) * 1);
 
-/* makes char a string */
-	p[0] = '%';
 	if (p == NULL)
-		return (0);
+		return (-1);
+
+	p[0] = '%';
 
 /* prints p to stdout then removes malloc */
 	if (n)
@@ -118,6 +122,10 @@ int print_int(const unsigned int n, ...)
 	}
 
 	s = malloc(sizeof(char) * count);
+
+	if (s == NULL)
+		return (-1);
+
 	div = div / 10;
 
 	/* converts int into string */
@@ -149,6 +157,9 @@ int print_bin(const unsigned int n, ...)
 	char *p = s;
 	va_list args;
 
+	if (s == NULL)
+		return (-1);
+
 	/* Prepping variables for use */
 	va_start(args, n);
 	num = va_arg(args, unsigned int);
@@ -162,6 +173,10 @@ int print_bin(const unsigned int n, ...)
 		num = num / 2;
 		p = s;
 		s = malloc(sizeof(char) * count);
+
+		if (s == NULL)
+			return (-1);
+
 		for (i = 0; i < count - 1; i++)
 			s[(count - 1) - i] = p[(count - 2) - i];
 		free(p);
