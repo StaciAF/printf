@@ -18,9 +18,6 @@ int print_char(const unsigned int n, ...)
 	/* Converts character to a string */
 	s = malloc(sizeof(char) * 1);
 
-	if (s == NULL)
-		return (-1);
-
 	s[0] = va_arg(args, int);
 
 	/* Prints string to stdout then discards it */
@@ -47,23 +44,23 @@ int print_string(const unsigned int n, ...)
 	/* set integer to count size of string */
 	int count;
 	char *s;
+	char *null = "(null)";
 
 	va_start(args, n);
 
 	/* set s to arg list reading char pointer */
 	s = va_arg(args, char *);
 
-	if (s == '\0')
-		return (-1);
+	if (s == NULL)
+	{
+		write(1, null, 6);
+		return (6);
+	}
 
 	/* finds length of string */
 	count = 0;
 		while (s[count] != '\0')
 		{
-			if (s[count] == 0)
-			{
-				return (-1);
-			}
 			count++;
 		}
 
