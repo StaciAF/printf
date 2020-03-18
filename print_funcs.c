@@ -128,9 +128,7 @@ int print_int(const unsigned int n, ...)
 		p = s;
 		s = malloc(sizeof(char) * count);
 		if (s == NULL)
-		{       free(p);
-			return (-1);
-		}
+			return (malfree(p));
 		s[0] = (((num / div) % 10) * neg) + '0';
 		for (i = 1; i < count; i++)
 			s[i] = p[i - 1];
@@ -142,9 +140,7 @@ int print_int(const unsigned int n, ...)
 		count++;
 		s = malloc(sizeof(char) * count);
 		if (s == NULL)
-		{       free(p);
-			return (-1);
-		}
+			return (malfree(p));
 		s[0] = '-';
 		for (i = 1; i < count; i++)
 			s[i] = p[i - 1];

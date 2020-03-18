@@ -46,3 +46,15 @@ int print_bin(const unsigned int n, ...)
 
 	return (count);
 }
+
+/**
+ * malfree - frees a given pointer and returns -1
+ * @p: pointer to free
+ *
+ * Return: -1
+ */
+int malfree(void *p)
+{
+	free(p);
+	return (-1);
+}
