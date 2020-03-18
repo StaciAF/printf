@@ -19,7 +19,9 @@ int print_bin(const unsigned int n, ...)
 	/* Prepping variables for use */
 	va_start(args, n);
 	num = va_arg(args, unsigned int);
-	s[0] = '\0';
+	s[0] = '0';
+	if (num == 0)
+		count++;
 
 	/* Algorithm to convert to binary string, digit by digit */
 	while (num != 0)
