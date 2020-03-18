@@ -22,5 +22,7 @@ int (*get_print_func(char x))(const unsigned int, ...)
 		return (print_uint);
 	if (x == 'o')
 		return (print_oct);
+	if (x == 'x' || x == 'X')
+		return (print_hex);
 	return (print_unknown);
 }

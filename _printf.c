@@ -30,8 +30,9 @@ int _printf(const char *format, ...)
 				tmp = func(1, va_arg(args, char *));
 			else if (format[i] == '%')
 				tmp = func(1);
-			else if (format[i] == 'b' || format[i] == 'u' || format[i] == 'o')
-				tmp = func(1, va_arg(args, unsigned int));
+			else if (format[i] == 'b' || format[i] == 'u' || format[i] == 'o' ||
+				format[i] == 'x' || format[i] == 'X')
+				tmp = func(1, va_arg(args, unsigned int), format[i]);
 			else
 				tmp = func(2, format[i - 1], format[i]);
 			if (tmp == -1)
