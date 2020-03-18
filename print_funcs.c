@@ -1,5 +1,5 @@
 #include "holberton.h"
-#include <stdio.h>
+
 /**
  * print_char - prints a character to stdout
  * @n: num of args
