@@ -124,13 +124,11 @@ int print_int(const unsigned int n, ...)
 		neg = -1;
 	s[0] = ((num % 10) * neg) + '0';
 	while (num / div != 0)
-	{
-		count++;
+	{       count++;
 		p = s;
 		s = malloc(sizeof(char) * count);
 		if (s == NULL)
-		{
-			free(p);
+		{       free(p);
 			return (-1);
 		}
 		s[0] = (((num / div) % 10) * neg) + '0';
@@ -140,13 +138,11 @@ int print_int(const unsigned int n, ...)
 		div = div * 10;
 	}
 	if (neg == -1)
-	{
-		p = s;
+	{       p = s;
 		count++;
 		s = malloc(sizeof(char) * count);
 		if (s == NULL)
-		{
-			free(p);
+		{       free(p);
 			return (-1);
 		}
 		s[0] = '-';
