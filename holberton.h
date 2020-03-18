@@ -13,6 +13,8 @@ int print_int(const unsigned int n, ...);
 int print_bin(const unsigned int n, ...);
 int print_percent(const unsigned int n, ...);
 int print_unknown(const unsigned int n, ...);
+int print_uint(const unsigned int n, ...);
+int print_oct(const unsigned int n, ...);
 int malfree(void *p);
 
 #endif

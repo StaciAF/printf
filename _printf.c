@@ -24,15 +24,13 @@ int _printf(const char *format, ...)
 			func = get_print_func(format[i]);
 			if (format[i] == '\0')
 				return (-1);
-			if (format[i] == 'c')
+			if (format[i] == 'c' || format[i] == 'd' || format[i] == 'i')
 				tmp = func(1, va_arg(args, int));
 			else if (format[i] == 's')
 				tmp = func(1, va_arg(args, char *));
 			else if (format[i] == '%')
 				tmp = func(1);
-			else if (format[i] == 'd' || format[i] == 'i')
-				tmp = func(1, va_arg(args, int));
-			else if (format[i] == 'b')
+			else if (format[i] == 'b' || format[i] == 'u' || format[i] == 'o')
 				tmp = func(1, va_arg(args, unsigned int));
 			else
 				tmp = func(2, format[i - 1], format[i]);

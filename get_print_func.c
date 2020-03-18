@@ -18,5 +18,9 @@ int (*get_print_func(char x))(const unsigned int, ...)
 		return (print_percent);
 	if (x == 'd' || x == 'i')
 		return (print_int);
+	if (x == 'u')
+		return (print_uint);
+	if (x == 'o')
+		return (print_oct);
 	return (print_unknown);
 }
