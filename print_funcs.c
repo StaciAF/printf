@@ -179,7 +179,7 @@ int print_unknown(const unsigned int n, ...)
 	s[1] = va_arg(args, int);
 
 	write(1, s, 2);
-
+	free(s);
 	va_end(args);
 
 	return (2);
