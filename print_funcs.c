@@ -108,40 +108,42 @@ int print_percent(const unsigned int n, ...)
  * Return: num of characters printed
  */
 int print_int(const unsigned int n, ...)
-{       int i, num, neg = 0, count = 0, div = 1;
-	char *s;
+{       int i, num, neg = 1, count = 1;
+	long int div = 1;
+	char *s = malloc(sizeof(char) * 1);
+	char *p;
 	va_list args;
 
 	va_start(args, n);
-	/* store integer to print */
 	num = va_arg(args, int);
-	/* count number of digits */
+	if (s == NULL)
+		return (-1);
+	if (num < 0)
+		neg = -1;
+	s[0] = (((num / div) % 10) * neg) + '0';
+	div = div * 10;
 	while (num / div != 0)
 	{
 		count++;
+		p = s;
+		s = malloc(sizeof(char) * count);
+		if (s == NULL)
+			return (-1);
+		s[0] = (((num / div) % 10) * neg) + '0';
+		for (i = 1; i < count; i++)
+			s[i] = p[i - 1];
+		free(p);
 		div = div * 10;
 	}
-	if (num < 0)
+	if (neg == -1)
 	{
-		neg = 1;
-		num = -num;
+		p = s;
 		count++;
-	}
-	s = malloc(sizeof(char) * count);
-	if (s == NULL)
-		return (-1);
-	div = div / 10;
-	/* converts int into string */
-	for (i = 0; i < count; i++)
-	{
-		if (neg && i == 0)
-		{
-			s[i] = '-';
-			continue;
-		}
-		s[i] = (num / div) + '0';
-		num = num % div;
-		div = div / 10;
+		s = malloc(sizeof(char) * count);
+		s[0] = '-';
+		for (i = 1; i < count; i++)
+			s[i] = p[i - 1];
+		free(p);
 	}
 	write(1, s, count);
 	va_end(args);
