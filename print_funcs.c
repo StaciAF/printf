@@ -13,11 +13,13 @@ int print_char(const unsigned int n, ...)
 	char *s;
 	va_list args;
 
-	va_start(args, n);
-
 	/* Converts character to a string */
 	s = malloc(sizeof(char) * 1);
 
+	if (s == NULL)
+		return (-1);
+
+	va_start(args, n);
 	s[0] = va_arg(args, int);
 
 	/* Prints string to stdout then discards it */
@@ -109,26 +111,28 @@ int print_percent(const unsigned int n, ...)
  */
 int print_int(const unsigned int n, ...)
 {       int i, num, neg = 1, count = 1;
-	long int div = 1;
-	char *s = malloc(sizeof(char) * 1);
-	char *p;
+	long int div = 10;
+	char *s = malloc(sizeof(char) * 1), *p;
 	va_list args;
 
-	va_start(args, n);
-	num = va_arg(args, int);
 	if (s == NULL)
 		return (-1);
+	va_start(args, n);
+	num = va_arg(args, int);
+	va_end(args);
 	if (num < 0)
 		neg = -1;
-	s[0] = (((num / div) % 10) * neg) + '0';
-	div = div * 10;
+	s[0] = ((num % 10) * neg) + '0';
 	while (num / div != 0)
 	{
 		count++;
 		p = s;
 		s = malloc(sizeof(char) * count);
 		if (s == NULL)
+		{
+			free(p);
 			return (-1);
+		}
 		s[0] = (((num / div) % 10) * neg) + '0';
 		for (i = 1; i < count; i++)
 			s[i] = p[i - 1];
@@ -140,13 +144,17 @@ int print_int(const unsigned int n, ...)
 		p = s;
 		count++;
 		s = malloc(sizeof(char) * count);
+		if (s == NULL)
+		{
+			free(p);
+			return (-1);
+		}
 		s[0] = '-';
 		for (i = 1; i < count; i++)
 			s[i] = p[i - 1];
 		free(p);
 	}
 	write(1, s, count);
-	va_end(args);
 	free(s);
 	return (count);
 }
@@ -161,6 +169,9 @@ int print_unknown(const unsigned int n, ...)
 {
 	va_list args;
 	char *s = malloc(sizeof(char) * 2);
+
+	if (s == NULL)
+		return (-1);
 
 	va_start(args, n);
 
